@@ -4,6 +4,8 @@ import "./App.css";
 import htmlParser from "html-parser";
 import { xad } from "./jsonFake";
 
+// https://www.npmjs.com/package/html-parser
+
 function App() {
   var html = xad;
   htmlParser.parse(html, {
