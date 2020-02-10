@@ -3,18 +3,25 @@ import logo from "./logo.svg";
 import "./App.css";
 import htmlParser from "html-parser";
 import { xad } from "./jsonFake";
+import { parse } from "node-html-parser";
 
+// ovo je prvi
 // https://www.npmjs.com/package/html-parser
 
-// console.log(JSON.parse(xad));
-
-// const reg = `https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)`;
+// ovo je drugi
+// https://www.npmjs.com/package/node-html-parser
 
 function App() {
   const [test, setTest] = useState();
   const arr = [];
+
+  const html = xad;
+  const html2 = xad;
+
+  // ovo je node-parser
+  const root = parse(html2);
+
   useEffect(() => {
-    const html = xad;
     htmlParser.parse(html, {
       // openElement: function(name) {
       //   console.log("open: %s", name);
@@ -33,7 +40,6 @@ function App() {
       // },
       attribute: function(name, value) {
         // console.log("attribute: %s=%s", name, value);
-        // console.log(value.match(reg));
         if (name === "data-href") {
           arr.push(value);
         }
@@ -50,15 +56,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log(test);
+    // console.log(test);
   }, [test]);
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <p>{root && root.rawText}</p>
         <a
           className="App-link"
           href="http://www.teletrader.com/foxconn-makes-masks-in…tart-lines-in-china-report/news/details/51189710"
